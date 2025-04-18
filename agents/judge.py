@@ -6,9 +6,5 @@ from config.settings import GROQ_API_KEY, LLAMA_MODEL
 
 def get_judge_agent():
     llm = ChatGroq(groq_api_key=GROQ_API_KEY, model=LLAMA_MODEL)
-
-    prompt = PromptTemplate.from_template(
-        template=JUDGE_PROMPT + "\nCase:\n{case_summary}"
-    )
-
+    prompt = PromptTemplate.from_template(JUDGE_PROMPT + "\nCase:\n{case_summary}")
     return LLMChain(llm=llm, prompt=prompt)
