@@ -5,20 +5,13 @@ csv.field_size_limit(sys.maxsize)
 
 def load_case_data(filepath):
     """
-    Loads case data from a CSV file.
-    Returns a list of dictionaries, one per case.
-    Each dictionary should have: summary, plaintiff, defendant, etc.
+    Loads summaries from a CSV file with one summary per line, no header.
+    Returns a list of dicts: {'summary': ...}
     """
     cases = []
     with open(filepath, mode="r", encoding="utf-8") as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            cases.append({
-                "summary": row.get("summary", ""),
-                "plaintiff": row.get("plaintiff", ""),
-                "defendant": row.get("defendant", ""),
-                "prosecution_arguments": row.get("prosecution_arguments", ""),
-                "defense_arguments": row.get("defense_arguments", ""),
-                "witnesses": row.get("witnesses", "")
-            })
+        for line in file:
+            summary = line.strip()
+            if summary:
+                cases.append({"summary": summary})
     return cases
