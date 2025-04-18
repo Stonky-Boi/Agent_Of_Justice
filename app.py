@@ -50,8 +50,6 @@ def main():
         ]
 
         # Opening Statements
-        state = run_phase(plaintiff_agent, "Plaintiff", "Opening Statement", state)
-        state = run_phase(defendant_agent, "Defendant", "Opening Statement", state)
         state = run_phase(prosecution_agent, "Prosecution", "Opening Statement", state)
         state = run_phase(defense_agent, "Defense", "Opening Statement", state)
 
