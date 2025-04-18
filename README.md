@@ -1,6 +1,6 @@
 # Cynaptics Club Inductions 2025 – Agent of Justice
 
-This repository contains my work for the Cynaptics Club inductions at IIT Indore. The task, which I have worked on and describe below, demonstrates my approach to advanced GenAI, LLM engineering, and multi-agent systems for simulating realistic courtroom trials.
+This repository contains our work for the Cynaptics Club inductions at IIT Indore. The task, which we have worked on and describe below, demonstrates our approach to advanced GenAI, LLM engineering, and multi-agent systems for simulating realistic courtroom trials.
 
 ---
 
