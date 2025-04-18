@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter and Colab
+.ipynb_checkpoints/
+
+# Environment
+.env
+.venv/
+*.env
+
+# VSCode
+.vscode/
+
+# Data & Logs
+*.log
+data/*.csv
+data/*.json
+
+# OS files
+.DS_Store
+Thumbs.db
