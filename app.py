@@ -1,30 +1,84 @@
-from langgraph.graph import StateGraph
-from agents import judge, prosecution_lawyer, defense_lawyer, plaintiff, defendant
+from typing import TypedDict, Optional
+from agents import judge, prosecution_lawyer, defense_lawyer, plaintiff, defendant, witness
 from config.case_loader import load_case_data
+
+class TrialState(TypedDict):
+    case_summary: str
+    history: str
+    phase: str
+    verdict: Optional[str]
+
+def trim_history(history, max_chars=4000):
+    return history[-max_chars:]
+
+def run_phase(agent, role, phase, state, extra_context=None):
+    state["phase"] = phase
+    context = {
+        "case_summary": state["case_summary"],
+        "history": trim_history(state["history"]),
+        "phase": phase,
+        "extra": ""
+    }
+    if extra_context:
+        context.update(extra_context)
+    response = agent.respond(context)
+    state["history"] += f"\n[{role} - {phase}]: {response.content.strip()}\n"
+    return state
 
 def main():
     case_data = load_case_data("data/data.csv")
+    case = case_data[0]
 
-    graph = StateGraph()
+    state: TrialState = {
+        "case_summary": case["summary"],
+        "history": "",
+        "phase": "",
+        "verdict": None
+    }
 
-    # Register agent nodes
-    graph.add_node("plaintiff", plaintiff.get_plaintiff_agent())
-    graph.add_node("defendant", defendant.get_defendant_agent())
-    graph.add_node("prosecution", prosecution_lawyer.get_prosecution_agent())
-    graph.add_node("defense", defense_lawyer.get_defense_agent())
-    graph.add_node("judge", judge.get_judge_agent())
+    # Initialize agents
+    plaintiff_agent = plaintiff.get_plaintiff_agent()
+    defendant_agent = defendant.get_defendant_agent()
+    prosecution_agent = prosecution_lawyer.get_prosecution_agent()
+    defense_agent = defense_lawyer.get_defense_agent()
+    judge_agent = judge.get_judge_agent()
 
-    # Set trial flow
-    graph.set_entry_point("plaintiff")
-    graph.add_edge("plaintiff", "defendant")
-    graph.add_edge("defendant", "prosecution")
-    graph.add_edge("prosecution", "defense")
-    graph.add_edge("defense", "judge")
+    # Example dynamic witnesses (replace with actual witness data as needed)
+    witnesses = [
+        {"name": "Jane Smith", "testimony": "I saw the defendant at the scene."},
+        {"name": "John Doe", "testimony": "The contract was signed in my presence."}
+    ]
 
-    executable = graph.compile()
-    verdict = executable.invoke({"case_summary": case_data[0]["summary"]})  # Example
+    # Opening Statements
+    state = run_phase(plaintiff_agent, "Plaintiff", "Opening Statement", state)
+    state = run_phase(defendant_agent, "Defendant", "Opening Statement", state)
+    state = run_phase(prosecution_agent, "Prosecution", "Opening Statement", state)
+    state = run_phase(defense_agent, "Defense", "Opening Statement", state)
 
-    print("\n🧑‍⚖️ Judge's Verdict:\n", verdict)
+    # Argumentation
+    state = run_phase(prosecution_agent, "Prosecution", "Argumentation", state)
+    state = run_phase(defense_agent, "Defense", "Argumentation", state)
+
+    # Witnesses (dynamic)
+    for w in witnesses:
+        witness_agent = witness.create_witness_agent(w["name"], w["testimony"])
+        extra = {"name": w["name"], "testimony": w["testimony"]}
+        state = run_phase(witness_agent, f"Witness {w['name']}", "Witness Testimony", state, extra_context=extra)
+
+    # Closing Statements
+    state = run_phase(prosecution_agent, "Prosecution", "Closing Statement", state)
+    state = run_phase(defense_agent, "Defense", "Closing Statement", state)
+
+    # Judge's Ruling
+    state = run_phase(judge_agent, "Judge", "Judge Ruling", state)
+    # Extract judge's verdict (last judge ruling in history)
+    state["verdict"] = state["history"].split("[Judge - Judge Ruling]:")[-1].strip()
+
+    # Output richer transcript
+    print("\n===== Courtroom Transcript =====\n")
+    print(state["history"])
+    print("\n===== Judge's Verdict =====\n")
+    print(state["verdict"])
 
 if __name__ == "__main__":
     main()
