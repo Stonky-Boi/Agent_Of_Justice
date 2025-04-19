@@ -1,0 +1,10 @@
+Order 1: Parties to suits.
+Order 6: Pleadings generally.
+Order 7: Plaint.
+Order 8: Written statement, set-off and counter-claim.
+Order 39: Temporary injunctions and interlocutory orders.
+Section 9: Courts to try all civil suits unless barred.
+Section 11: Res judicata.
+Section 96: Appeal from original decree.
+Section 115: Revision.
+(For full CPC, see: https://indiacode.nic.in/handle/123456789/1594)
