@@ -40,7 +40,7 @@ def run_phase(agent, role, phase, state, extra_context=None, pbar=None):
     return state
 
 def main():
-    cases = load_case_data("data/case_summaries.csv")
+    cases = load_case_data("data/summary.csv")
     
     # Main progress bar for all cases
     with tqdm(total=len(cases), desc="Cases", position=0) as case_pbar:
