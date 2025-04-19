@@ -1,7 +1,8 @@
 import os
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings  # or use Gemini/other embeddings
+from langchain_community.vectorstores import FAISS
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from config.settings import GOOGLE_API_KEY
 
 def load_legal_chunks(base_dir="legal_knowledge"):
     docs = []
@@ -19,15 +20,24 @@ def build_legal_vectorstore():
     docs = load_legal_chunks()
     texts = [doc["content"] for doc in docs]
     metadatas = [{"source": doc["source"]} for doc in docs]
-    embeddings = OpenAIEmbeddings()  # or Gemini embeddings
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/embedding-001",
+        google_api_key=GOOGLE_API_KEY
+    )
     vs = FAISS.from_texts(texts, embedding=embeddings, metadatas=metadatas)
     vs.save_local("legal_vectorstore")
     print("Legal knowledge base vectorstore saved.")
 
 def load_legal_vectorstore():
-    embeddings = OpenAIEmbeddings()  # or Gemini embeddings
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/embedding-001",
+        google_api_key=GOOGLE_API_KEY
+    )
     return FAISS.load_local("legal_vectorstore", embeddings)
 
 def retrieve_legal(query, vectorstore, k=3):
     results = vectorstore.similarity_search(query, k=k)
     return "\n\n".join([f"[Legal Reference from {r.metadata['source']}]:\n{r.page_content}" for r in results])
+
+if __name__ == "__main__":
+    build_legal_vectorstore()
