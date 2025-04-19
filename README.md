@@ -60,6 +60,7 @@ python summarize.py
 - Set your Groq API key in a `.env` file:
   ```
   GROQ_API_KEY=your_actual_api_key
+  GOOGLE_API_KEY=your_actual_api_key
   ```
 
 ---
