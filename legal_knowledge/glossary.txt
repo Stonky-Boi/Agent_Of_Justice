@@ -1,0 +1,21 @@
+Writ: A formal written order issued by a court.
+Plaintiff: The party who initiates a lawsuit.
+Defendant: The party against whom a lawsuit is filed.
+Petitioner: A person who presents a petition to the court.
+Respondent: The party against whom a petition is filed.
+Appellant: The party who appeals a court decision.
+Respondent: The party who responds to an appeal.
+Affidavit: A written statement confirmed by oath for use as evidence in court.
+Prima facie: At first sight; based on first impression.
+Res judicata: A matter that has been adjudicated by a competent court and may not be pursued further by the same parties.
+Sub judice: Under judicial consideration and therefore prohibited from public discussion elsewhere.
+Amicus curiae: A friend of the court; someone who is not a party to a case but offers information or expertise.
+Injunction: A court order requiring a party to do or refrain from doing specific acts.
+Jurisdiction: The authority of a court to hear and decide a case.
+Mens rea: Criminal intent.
+Actus reus: The physical act of committing a crime.
+Burden of proof: The obligation to prove one's assertion.
+Precedent: A legal case that establishes a principle or rule.
+Doctrine: A legal principle that is widely adhered to.
+Ratio decidendi: The legal reasoning for a court's decision.
+Obiter dicta: Remarks or observations made by a judge that are not essential to the decision.
