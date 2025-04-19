@@ -7,14 +7,15 @@ class CourtroomAgent:
         self.role = role
 
     def build_prompt(self, context):
-        # Safely fill any missing context keys with an empty string
+        # Ensure all keys used in prompt are present, provide empty string if missing
         prompt = self.base_prompt.format(
             case_summary=context.get("case_summary", ""),
             history=context.get("history", ""),
             phase=context.get("phase", ""),
             extra=context.get("extra", ""),
             name=context.get("name", ""),
-            testimony=context.get("testimony", "")
+            testimony=context.get("testimony", ""),
+            legal_context=context.get("legal_context", "")  # <-- Fix: always provide this
         )
         return prompt
 
