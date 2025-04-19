@@ -33,8 +33,8 @@ This repository contains our work for the Cynaptics Club inductions at IIT Indor
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Stonky-Boi/Cynaptics-Inductions-2025-2.git
-cd Cynaptics-Inductions-2025-2
+git clone https://github.com/Stonky-Boi/Cynaptics_Inductions_2025_2.git
+cd Cynaptics_Inductions_2025_2
 ```
 
 ### 2. Install Dependencies
