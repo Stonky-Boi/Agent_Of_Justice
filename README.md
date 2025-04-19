@@ -57,7 +57,7 @@ python summarize.py
 
 ### 4. Configure Environment
 
-- Set your Groq API key in a `.env` file:
+- Set your API keys in a `.env` file:
   ```
   GROQ_API_KEY=your_actual_api_key
   GOOGLE_API_KEY=your_actual_api_key
