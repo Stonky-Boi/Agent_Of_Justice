@@ -3,4 +3,5 @@ langgraph
 openai
 python-dotenv
 langchain-groq
+langchain-google-genai
 tqdm
