@@ -16,20 +16,22 @@ class TrialState(TypedDict):
 def trim_history(history, max_chars=4000):
     return history[-max_chars:]
 
-def run_phase(agent, role, phase, state, vectorstore, extra_context=None, pbar=None):
+def run_phase(agent, role, phase, state, vectorstore=None, extra_context=None, pbar=None):
     if pbar:
         pbar.set_description(f"Processing: {role} - {phase}")
     state["phase"] = phase
 
-    # Retrieve relevant legal references (RAG)
-    query = f"{state['case_summary']} {phase} {role}"
-    legal_context = retrieve_legal(query, vectorstore, k=3)
+    # Retrieve relevant legal references (RAG) if vectorstore is provided
+    legal_context = ""
+    if vectorstore is not None:
+        query = f"{state['case_summary']} {phase} {role}"
+        legal_context = retrieve_legal(query, vectorstore, k=3)  # retrieve_legal must be defined/imported
 
     context = {
         "case_summary": state["case_summary"],
         "history": trim_history(state["history"]),
         "phase": phase,
-        "legal_context": legal_context,
+        "legal_context": legal_context,  # <-- Fix: always include this key
         "extra": ""
     }
     if extra_context:
