@@ -90,7 +90,7 @@ def main():
     # ---- Load RAG vectorstore ----
     vectorstore = load_legal_vectorstore()
 
-    cases = load_case_data("data/case_summaries.csv")
+    cases = load_case_data("data/summary.csv")
     with tqdm(total=len(cases), desc="Cases", position=0) as case_pbar:
         for idx, case in enumerate(cases):
             print(f"\n\n===== Simulating Case {idx+1}/{len(cases)} =====\n")
