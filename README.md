@@ -70,7 +70,7 @@ python summarize.py
 ### Run the Courtroom Simulation
 
 ```bash
-python app.py
+python main.py
 ```
 
 - The simulation will loop through all cases in `data/summary.csv`, running a full trial for each.
@@ -83,7 +83,7 @@ python app.py
 
 | File/Folder              | Purpose                                                      |
 |--------------------------|--------------------------------------------------------------|
-| `app.py`                 | Main script: runs the trial simulation for all cases         |
+| `main.py`                | Main script: runs the trial simulation for all cases         |
 | `summarize.py`           | Summarizes each judgment for LLM input                       |
 | `config/case_loader.py`  | Loads case summaries for simulation                          |
 | `config/prompts.py`      | Role-specific, context-rich prompt templates                 |
@@ -98,8 +98,8 @@ python app.py
 ## Customization & Extensibility
 
 - **Add More Agents:** Easily add new roles (e.g., Jury, Expert Witness) by extending the `agents/` folder.
-- **Dynamic Trial Flow:** Modify `app.py` to change the order or logic of trial phases.
-- **Custom Witnesses:** Adjust the witness list in `app.py` per case for greater realism.
+- **Dynamic Trial Flow:** Modify `main.py` to change the order or logic of trial phases.
+- **Custom Witnesses:** Adjust the witness list in `main.py` per case for greater realism.
 - **Prompt Tuning:** Edit `prompts.py` to further refine agent behavior and fact adherence.
 
 ---
@@ -107,5 +107,5 @@ python app.py
 ## Troubleshooting
 
 - **Token Limit Errors:** If you see 413 errors, ensure your summaries are concise and context trimming is enabled.
-- **Connection Errors:** If Groq API is unreachable, check your network and API key.
+- **Connection Errors:** If Groq or Gemini API is unreachable, check your network and API key.
 - **Hallucinated Facts:** Ensure your summaries are explicit and prompts instruct agents to use only the provided summary.
