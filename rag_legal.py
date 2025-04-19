@@ -33,7 +33,7 @@ def load_legal_vectorstore():
         model="models/embedding-001",
         google_api_key=GOOGLE_API_KEY
     )
-    return FAISS.load_local("legal_vectorstore", embeddings)
+    return FAISS.load_local("legal_vectorstore", embeddings, allow_dangerous_deserialization=True)
 
 def retrieve_legal(query, vectorstore, k=3):
     results = vectorstore.similarity_search(query, k=k)
