@@ -1,9 +1,10 @@
 langchain
 langchain-community
+langchain-groq
+langchain-google-genai
 langgraph
 openai
 python-dotenv
-langchain-groq
-langchain-google-genai
 tqdm
 faiss-cpu
+faiss-gpu
