@@ -206,3 +206,13 @@ Retrieval-Augmented Generation (RAG) is now a best practice in legal GenAI, as i
 - All scripts are designed for robustness: errors are logged, outputs are checkpointed, and you can resume any process from where it crashed.
 
 ---
+
+## Contributors
+
+This project was developed by:
+
+- **Alaya D'Cruz** ([alayacruz](https://github.com/alayacruz))
+- **Arnav Kumar** ([Stonky-Boi](https://github.com/Stonky-Boi))
+- **Prakrati Pawar** ([prakrati28](https://github.com/prakrati28))
+
+---
