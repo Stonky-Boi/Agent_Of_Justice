@@ -1,7 +1,7 @@
 # Agent of Justice
-![GitHub Created At](https://img.shields.io/github/created-at/Stonky-Boi/Cynaptics_Inductions_2025_2)
-![GitHub contributors](https://img.shields.io/github/contributors/Stonky-Boi/Cynaptics_Inductions_2025_2)
-![GitHub License](https://img.shields.io/github/license/Stonky-Boi/Cynaptics_Inductions_2025_2)
+![GitHub Created At](https://img.shields.io/github/created-at/Stonky-Boi/Agent_Of_Justice)
+![GitHub contributors](https://img.shields.io/github/contributors/Stonky-Boi/Agent_Of_Justice)
+![GitHub License](https://img.shields.io/github/license/Stonky-Boi/Agent_Of_Justice)
 
 This repository contains our work for the Cynaptics Club inductions at IIT Indore, **including both our original Agent of Justice simulation and our solution for the [Kaggle Agent of Justice contest](https://www.kaggle.com/competitions/agent-of-justice/overview)**.  
 Our approach demonstrates advanced GenAI, LLM engineering, multi-agent orchestration, and RAG-powered legal reasoning for realistic courtroom trial simulation and binary verdict prediction.
@@ -58,8 +58,8 @@ RAG enhances LLMs by integrating a vectorized legal knowledge base (statutes, co
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Stonky-Boi/Cynaptics_Inductions_2025_2.git
-cd Cynaptics_Inductions_2025_2
+git clone https://github.com/Stonky-Boi/Agent_Of_Justice.git
+cd Agent_Of_Justice
 ```
 
 ### 2. Install Dependencies
